@@ -21,16 +21,18 @@ filter seemed appropriate.
 
 I will also attempt to tackle the task of traffic estimation by means of representing the congestion in the city as a Gaussian
 Process in terms of average speed. The continual-space varying nature of a Gaussian Process might provide deeper insight into
-congestion related matters. Travel time distributions could then be found through integration of the speed distribution along the
-dimensions of a road.
+congestion related matters. Travel time distributions could then be found through integration of the speed distribution along the dimensions of a road.
 
 #### Current Models Being Investigated
 ---------------------------------------
 My initial modelling techniques treat the underlying dynamics of congestion as a linear dynamic stochastic process. Each
-link is assumed to have a travel-time (time taken to traverse the full length of the road) which is distributed normally. I will
-treat the state of a link, *i*, at time *t*, to be conditionally independent of the states of non-neighbouring links at time 
-*t-1* and the states of all links prior to time *t-1*. Finding the optimal dependency will be the subject of investigations
-yet to come. Machine learning techniques could be suitable for this.
+link is assumed to have a travel-time (time taken to traverse the full length of the road) which is distributed normally. I will treat the state of a link, *i*, at time *t*, to be conditionally independent of the states of non-neighbouring links at time *t-1* and the states of all links prior to time *t-1*. Finding the optimal dependency will be the subject of investigations yet to come. Machine learning techniques could be suitable for this.
+
+Performance will be done through measuring the accuracy of the distribution generated for the travel time of each
+link at each timestep of our model. Sampling techniques will be employed to see if measurements from the test set are
+in accordance with our predicted distributions.
+
+
 
 #### Background & Motivation for Work
 --------------------------------------
