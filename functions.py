@@ -735,7 +735,7 @@ def make_measurement_matrices(last_index, last_timestamp, sorted_reported_data, 
 def measure_performance(sorted_test_data, last_timestamp, predicted_X,links_of_interest):
     '''
     This is a function for estimation performance testing. First, we gets all the measurements in the test data that
-    happen in the next 5 min block (to the block we have predicted states for). Then, we identify which road the
+    happen in same 5 min block to the block we have predicted states for. Then, we identify which road the
     measurement was on, and what proportion of the road was travelled. We then map this to our state vector and
     multiply our predicted link travel time by the proportion travelled. If more than one link was travelled,
     we sum the predicted link travel times. We then calculate the absolute value of the error between the time
@@ -748,8 +748,8 @@ def measure_performance(sorted_test_data, last_timestamp, predicted_X,links_of_i
     sorted_test_data (multidimensional list): Output of test_data when fed to the transform_into_kalman_input function.
 
     last_timestamp (integer): Last timestamp from the training set  that is going to was used in the last measurement
-                              update. The measurments we look at from the test set for performance testing is
-                              dependent should be greater than this value.
+                              update. The measurments we look at from the test set for performance testing should be
+                              less than 300 seconds below this value.
 
 
     predicted_X (1D numpy vector): Current predicted state vector.
@@ -763,7 +763,7 @@ def measure_performance(sorted_test_data, last_timestamp, predicted_X,links_of_i
     '''
     # set min_timestamp so estimation performance is done for all measurements
     # that happen in the time block we have predicted  for.
-    min_timestamp = last_timestamp
+    min_timestamp = last_timestamp - 300
 
     sum_of_abs = 0
     num_measurements = 0
